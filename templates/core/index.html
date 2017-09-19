@@ -1,0 +1,73 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#bs-carousel" data-slide-to="1"></li>
+        <li data-target="#bs-carousel" data-slide-to="2"></li>
+        <li data-target="#bs-carousel" data-slide-to="3"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item slides active">
+            <div class="slide-1"></div>
+            <div class="hero">
+                <hgroup>
+                    <h1>Welcome on the LIFE project</h1>
+                    <h3>You will be able to access fun functions</h3>
+                    <h3>Let's started !</h3>
+                </hgroup>
+            </div>
+        </div>
+        <div class="item slides">
+            <div class="slide-2"></div>
+            <div class="hero">
+                <hgroup>
+                    <h1>Planning Poker</h1>
+                    <h3>Try the planning poker functionnality</h3>
+                </hgroup>
+                <a href="/poker" class="btn btn-hero btn-lg" role="button">Here</a>
+            </div>
+        </div>
+        <div class="item slides">
+            <div class="slide-3"></div>
+            <div class="hero">
+                <hgroup>
+                    <h1>Runtastic</h1>
+                    <h3>Let's go running !</h3>
+                </hgroup>
+                <a href="/runtastic" class="btn btn-hero btn-lg" role="button">Here</a>
+            </div>
+        </div>
+        <div class="item slides">
+            <div class="slide-4"></div>
+            <div class="hero">
+                <hgroup>
+                    <h1>Other</h1>
+                    <h3>Let's discover others tools</h3>
+                </hgroup>
+                <a href="#" class="btn btn-hero btn-lg" role="button">Here</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
