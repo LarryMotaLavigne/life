@@ -18,9 +18,8 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'', include('core.urls')),
-    url(r'', include('core.urls')),
     url(r'^runtastic/', include('runtastic.urls')),
     url(r'^poker/', include('poker.urls')),
-    url('', include('social_django.urls', namespace='social'))
+    url(r'', include('core.urls')),
+    url(r'openid/', include('djangooidc.urls')),
 ]

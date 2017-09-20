@@ -11,13 +11,40 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from bossoidc.settings import *
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
+
+#########################################################
+# Authentication
+#########################################################
+
+# Keycloak
+auth_uri = "http://localhost:8080/auth/realms/Life"
+client_id = "Life"
+public_uri = "http://localhost:8000"
+configure_oidc(auth_uri, client_id, public_uri)
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'bossoidc.backend.OpenIdConnectBackend',
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'oidc_auth.authentication.BearerTokenAuthentication',
+    ),
+}
+
+#########################################################
+# Base
+#########################################################
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'jou8pt^m-on)^wtl-l7nuex7gq+bd87tm8(pprb12e^o9jlh^&'
@@ -27,20 +54,18 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
-# Application definition
-
 INSTALLED_APPS = [
-    'core',
-    'poker',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'social_django',
-    'social_django_mongoengine',
+    'bossoidc',
+    'djangooidc',
+    'core',
+    'poker',
+    'runtastic',
 ]
 
 MIDDLEWARE = [
@@ -77,26 +102,16 @@ TEMPLATES = [
 WSGI_APPLICATION = 'life.wsgi.application'
 
 
+#########################################################
 # Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+#########################################################
 
 DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-            'NAME': 'life',                      # Or path to database file if using sqlite3.
-            'USER': 'life_admin',
-            'PASSWORD': 'diamantnoir',
-            'HOST': 'localhost',
-            'PORT': '',
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -117,8 +132,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+#########################################################
 # Internationalization
-# https://docs.djangoproject.com/en/1.11/topics/i18n/
+#########################################################
 
 LANGUAGE_CODE = 'en-us'
 
@@ -131,43 +147,10 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
+#########################################################
+# Static files
+#########################################################
 
 STATIC_URL = '/static/'
 STATIC_ROOT = ''
-# Authentication Backend
-AUTHENTICATION_BACKENDS = [
-    'social_core.backends.google.GooglePlusAuth',
-    'social_core.backends.open_id.OpenIdAuth',
-    'social_core.backends.google.GoogleOpenId',
-    'social_core.backends.google.GoogleOAuth2',
-    'social_core.backends.google.GoogleOAuth',
-    'social_core.backends.twitter.TwitterOAuth',
-    'social_core.backends.yahoo.YahooOpenId',
-    'django.contrib.auth.backends.ModelBackend',
-]
 
-
-#==============================================================================================
-#   SOCIAL AUTH
-#==============================================================================================
-
-SOCIAL_AUTH_STORAGE = 'social_django_mongoengine.models.DjangoStorage'
-
-SOCIAL_AUTH_URL_NAMESPACE = 'social'
-
-SOCIAL_AUTH_PIPELINE = (
-    'social_core.pipeline.social_auth.social_details',
-    'social_core.pipeline.social_auth.social_uid',
-    'social_core.pipeline.social_auth.social_user',
-    'social_core.pipeline.user.get_username',
-    'social_core.pipeline.user.create_user',
-    'social_core.pipeline.social_auth.associate_user',
-    'social_core.pipeline.social_auth.load_extra_data',
-    'social_core.pipeline.user.user_details',
-    'social_core.pipeline.social_auth.associate_by_email',
-)
-
-SOCIAL_AUTH_GOOGLE_PLUS_KEY = '675441766815-ehacl3i9ittjumdtker3rqkiv4ne75rr.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_PLUS_SECRET = 'YG9GVXwfaHUJ67ucleCSGXBt'
