@@ -7,8 +7,8 @@ def index(request):
 
 def session(request):
     context = {}
-    return render(request, "poker/session.html", context)
+    return render(request, "poker/index.html", context)
 
 def result(request, session_id):
     context = {}
-    return render(request, "poker/result.html", context)
+    return render(request, "poker/index.html", context)

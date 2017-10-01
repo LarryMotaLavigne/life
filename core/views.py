@@ -1,9 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def index(request):
-    return HttpResponse('You\'re at the index. <a href="/secure">Secure</a>')
+    context = {"title": "lol"}
+    return render(request, "core/index.html", context)
+    #
+    # return HttpResponse('You\'re at the index. <a href="/secure">Secure</a>')
 
 
 @login_required

@@ -4,21 +4,42 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title%}{% endblock %}</title>
+        {#             CSS files         #}
+        <link rel="stylesheet" href="{% static 'css/app.css' %}">
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/app.css' %}">
+        {#             JS files         #}
+        {% block jquery_version %}
+            <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+        {% endblock %}
+        <script src="{% static 'js/bootstrap.js' %}"></script>
         {% block more_header %}
         {% endblock %}
     </head>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Life</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><p class="navbar-text"><b><a class="no-underline text-bold text-white" href="/secure">Sign in</a></b> or <b><a class="no-underline text-bold text-white" href="/secure">Sign up</a></b></p></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <body>
         {% block body%}
 
-        {% endblock %}
-
-        <script src="{% static 'js/app.js' %}"></script>
-        <script src="{% static 'js/bootstrap.js' %}"></script>
-        {% block jquery_version %}
-            <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
         {% endblock %}
 
         {% block more_body %}
