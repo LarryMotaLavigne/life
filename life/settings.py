@@ -20,14 +20,14 @@ from bossoidc.settings import *
 #########################################################
 
 # Keycloak
-auth_uri = "http://localhost:8080/auth/realms/Life"
-client_id = "Life"
-public_uri = "http://localhost:8000"
-configure_oidc(auth_uri, client_id, public_uri)
+# auth_uri = "http://localhost:8080/auth/realms/Life"
+# client_id = "Life"
+# public_uri = "http://localhost:8000"
+# configure_oidc(auth_uri, client_id, public_uri)
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'bossoidc.backend.OpenIdConnectBackend',
+    # 'bossoidc.backend.OpenIdConnectBackend',
 ]
 
 REST_FRAMEWORK = {

@@ -3,7 +3,9 @@ language: python
 python:
   - 3.5.2
 
-services: postgresql
+services:
+  - postgresql
+  - docker
 
 addons:
   postgresql: "9.6"
@@ -11,11 +13,17 @@ addons:
 env:
   - DATABASE_URL=postgres://postgres:@localhost/travisci
 
+before_install:
+  - docker pull jboss/keycloak
+  - docker run --name keycloak -d -p 8080:8080 -e KEYCLOAK_USER=test -e KEYCLOAK_PASSWORD=test jboss/keycloak
+  - docker ps -a
+
 install:
   - pip3 install -r requirements.txt
 
 before_script:
   - psql -c "CREATE DATABASE travisci;" -U postgres
+  - python3 manage.py makemigrations bossoidc
   - python3 manage.py migrate --noinput
   - python3 manage.py collectstatic
 
