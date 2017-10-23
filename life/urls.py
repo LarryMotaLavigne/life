@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'^runtastic/', include('runtastic.urls')),
     url(r'^poker/', include('poker.urls')),
     url(r'', include('core.urls')),
-    url(r'openid/', include('djangooidc.urls')),
+    # url(r'openid/', include('djangooidc.urls')),
 ]
