@@ -11,7 +11,7 @@ addons:
   postgresql: "9.6"
 
 env:
-  - DATABASE_URL=postgres://postgres:@localhost/travisci
+  - DATABASE_URL=postgres://postgres@localhost/travisdb
 
 before_install:
   - docker pull jboss/keycloak
@@ -22,7 +22,7 @@ install:
   - pip3 install -r requirements.txt
 
 before_script:
-  - psql -c "CREATE DATABASE travisci;" -U postgres
+  - psql -c "CREATE DATABASE travisdb;" -U postgres
   - python3 manage.py migrate --noinput
   - python3 manage.py collectstatic --noinput
 

@@ -14,6 +14,16 @@ import os
 import dj_database_url
 from bossoidc.settings import *
 
+#########################################################
+# Environment configuration
+#########################################################
+TRAVIS_ENVIRONMENT, HEROKU_ENVIRONMENT = False
+
+if 'TRAVIS' in os.environ:
+    TRAVIS_ENVIRONMENT = True
+elif 'HEROKU' in os.environ:
+    HEROKU_ENVIRONMENT = True
+
 
 
 #########################################################
@@ -109,9 +119,21 @@ WSGI_APPLICATION = 'life.wsgi.application'
 #########################################################
 
 # Update database configuration with $DATABASE_URL.
-DATABASES = {
-    'default': dj_database_url.config(conn_max_age=500)
-}
+if TRAVIS_ENVIRONMENT:
+    DATABASES = {
+        'default': {
+            'ENGINE':   'django.db.backends.postgresql_psycopg2',
+            'NAME':     'travisci',
+            'USER':     'postgres',
+            'PASSWORD': '',
+            'HOST':     'localhost',
+            'PORT':     '',
+        }
+    }
+elif HEROKU_ENVIRONMENT:
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=500)
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
