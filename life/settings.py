@@ -109,8 +109,9 @@ WSGI_APPLICATION = 'life.wsgi.application'
 #########################################################
 
 # Update database configuration with $DATABASE_URL.
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+DATABASES = {
+    'default': dj_database_url.config(conn_max_age=500)
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
