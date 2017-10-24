@@ -26,7 +26,7 @@ elif 'HEROKU' in os.environ:
     HEROKU_ENVIRONMENT = True
 
 
-
+ALLOWED_HOSTS = ["lifedjango.herokuapp.com"]
 #########################################################
 # Authentication
 #########################################################
