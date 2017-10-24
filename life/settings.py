@@ -17,7 +17,8 @@ from bossoidc.settings import *
 #########################################################
 # Environment configuration
 #########################################################
-TRAVIS_ENVIRONMENT, HEROKU_ENVIRONMENT = False
+TRAVIS_ENVIRONMENT = False
+HEROKU_ENVIRONMENT = False
 
 if 'TRAVIS' in os.environ:
     TRAVIS_ENVIRONMENT = True
