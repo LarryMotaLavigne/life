@@ -124,7 +124,7 @@ if TRAVIS_ENVIRONMENT:
     DATABASES = {
         'default': {
             'ENGINE':   'django.db.backends.postgresql_psycopg2',
-            'NAME':     'travisci',
+            'NAME':     'travisdb',
             'USER':     'postgres',
             'PASSWORD': '',
             'HOST':     'localhost',
