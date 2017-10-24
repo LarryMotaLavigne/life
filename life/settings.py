@@ -25,8 +25,8 @@ if 'TRAVIS' in os.environ:
 elif 'HEROKU' in os.environ:
     HEROKU_ENVIRONMENT = True
 
-
-ALLOWED_HOSTS = ["lifedjango.herokuapp.com"]
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+ALLOWED_HOSTS = ['*']
 #########################################################
 # Authentication
 #########################################################
