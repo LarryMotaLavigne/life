@@ -22,12 +22,12 @@ HEROKU_ENVIRONMENT = False
 
 if 'TRAVIS' in os.environ:
     TRAVIS_ENVIRONMENT = True
-    DEBUG = True
+    DEBUG = False
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     ALLOWED_HOSTS = ['*']
 elif 'HEROKU' in os.environ:
     HEROKU_ENVIRONMENT = True
-    DEBUG = True
+    DEBUG = False
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     ALLOWED_HOSTS = ['*']
 else:
