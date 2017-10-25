@@ -22,11 +22,17 @@ HEROKU_ENVIRONMENT = False
 
 if 'TRAVIS' in os.environ:
     TRAVIS_ENVIRONMENT = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    ALLOWED_HOSTS = ['*']
 elif 'HEROKU' in os.environ:
     HEROKU_ENVIRONMENT = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    ALLOWED_HOSTS = ['*']
+else:
+    DEBUG = True
+    ALLOWED_HOSTS = []
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-ALLOWED_HOSTS = ['*']
+
 #########################################################
 # Authentication
 #########################################################
@@ -63,9 +69,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'jou8pt^m-on)^wtl-l7nuex7gq+bd87tm8(pprb12e^o9jlh^&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
