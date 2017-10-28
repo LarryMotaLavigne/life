@@ -10,6 +10,13 @@ def index(request):
     # return HttpResponse('You\'re at the index. <a href="/secure">Secure</a>')
 
 
+def homepage(request):
+    context = {"title": "homepage"}
+    return render(request, "core/login.html", context)
+
+
 @login_required
 def secure(request):
     return HttpResponse('Secure page. <a href="/openid/logout">Logout</a>')
+
+

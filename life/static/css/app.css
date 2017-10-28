@@ -11,3 +11,8 @@ body { padding-top: 70px; }
 .text-white {
   color: #fff !important;
 }
+
+.title{
+    font-family:'barbershop', sans-serif !important;
+    font-size: 40px !important;
+}

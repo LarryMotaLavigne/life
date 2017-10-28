@@ -3,7 +3,8 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title%}{% endblock %}</title>
+        <link rel="icon" type="image/png" href="{% static 'favicon/L_16x16.png' %}">
+        <title>{% block title%}Life{% endblock %}</title>
         {#             CSS files         #}
         <link rel="stylesheet" href="{% static 'css/app.css' %}">
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
@@ -16,6 +17,12 @@
         {% block more_header %}
         {% endblock %}
     </head>
+    <style>
+        @font-face {
+            font-family: barbershop;
+            src: url('{% static 'fonts/Barbershop-in-Thailand.ttf' %}') format("truetype");
+        }
+    </style>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
@@ -26,7 +33,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">Life</a>
+                <a class="navbar-brand title" href="/">Life</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -45,5 +52,6 @@
         {% block more_body %}
 
         {% endblock %}
+
     </body>
 </html>
