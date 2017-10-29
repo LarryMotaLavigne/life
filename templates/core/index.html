@@ -1,46 +1,5 @@
 {% extends "core/base.html" %}
 
-{% block more_header %}
-    {% load staticfiles%}
-    <link rel="stylesheet" href="{% static 'owlcarousel/owl.carousel.min.css' %}">
-    <link rel="stylesheet" href="{% static 'owlcarousel/owl.theme.default.min.css' %}">
-{%  endblock %}
-
 {% block body %}
-    {% load staticfiles%}
-
-    <div class="owl-carousel owl-theme">
-        <div class="item">
-            <a href="/poker"><img src="{% static 'images/poker.jpg' %}"></a>
-        </div>
-        <div class="item">
-            <a href="/runtastic"><img src="{% static 'images/runtastic.png' %}"></a>
-        </div>
-        <div class="item">
-            <a href="/"><img src="{% static 'images/music.jpg' %}"></a>
-        </div>
-        <div class="item">
-            <a href="/"><img src="{% static 'images/todolist.jpg' %}"></a>
-        </div>
-    </div>
-{% endblock %}
-
-{% block more_body %}
-    {% load staticfiles%}
-    <script src="{% static "owlcarousel/owl.carousel.min.js" %}"></script>
-
-    <script>
-        $(document).ready(function(){
-            $(".owl-carousel").owlCarousel({
-                loop:true,
-                nav:true,
-                autoWidth:true,
-                autoHeight:true,
-                margin:10,
-                autoplay:true,
-                autoplayTimeout:2000,
-                autoplayHoverPause:true
-            })
-        });
-    </script>
+    Index
 {% endblock %}

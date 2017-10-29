@@ -4,15 +4,16 @@ from django.shortcuts import render
 
 
 def index(request):
-    context = {"title": "lol"}
+    context = {"title": "login"}
     return render(request, "core/index.html", context)
+
+
+@login_required
+def home(request):
+    context = {"title": "lol"}
+    return render(request, "core/home.html", context)
     #
     # return HttpResponse('You\'re at the index. <a href="/secure">Secure</a>')
-
-
-def homepage(request):
-    context = {"title": "homepage"}
-    return render(request, "core/login.html", context)
 
 
 @login_required

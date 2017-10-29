@@ -38,7 +38,12 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><p class="navbar-text"><b><a class="no-underline text-bold text-white" href="/secure">Sign in</a></b> or <b><a class="no-underline text-bold text-white" href="/secure">Sign up</a></b></p></li>
+                    {% if user.is_authenticated %}
+                        <li><p class="navbar-text">Hello <b>{{ user }}</b></p></li>
+                        <li><p class="navbar-text"><a class="no-underline text-bold text-white" href="/logout">Logout</a></p></li>
+                    {% else %}
+                        <li><p class="navbar-text"><b><a class="no-underline text-bold text-white" href="/login">Sign in</a></b> or <b><a class="no-underline text-bold text-white" href="/login">Sign up</a></b></p></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

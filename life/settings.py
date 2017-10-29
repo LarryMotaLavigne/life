@@ -12,7 +12,71 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import dj_database_url
-from bossoidc.settings import *
+# from bossoidc.settings import *
+
+
+#########################################################
+# Base
+#########################################################
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'jou8pt^m-on)^wtl-l7nuex7gq+bd87tm8(pprb12e^o9jlh^&'
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    # 'social.apps.django_app.default',  # Social Authent
+    'core',
+    'poker',
+    'runtastic',
+    # 'bossoidc',
+    # 'djangooidc',
+]
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+ROOT_URLCONF = 'life.urls'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        ,
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                # 'social.apps.django_app.context_processors.backends',  # Social Authent
+                # 'social.apps.django_app.context_processors.login_redirect',  # Social Authent
+                # 'social_django.context_processors.backends',
+                # 'social_django.context_processors.login_redirect',
+            ],
+        },
+    },
+]
+
+SITE_ID=1
+
+WSGI_APPLICATION = 'life.wsgi.application'
+
 
 #########################################################
 # Environment configuration
@@ -44,82 +108,28 @@ else:
 # client_id = "Life"
 # public_uri = "http://localhost:8000"
 # configure_oidc(auth_uri, client_id, public_uri)
+
 from django.conf.global_settings import DATABASES
 
 AUTHENTICATION_BACKENDS = [
+    # 'social.backends.facebook.FacebookOAuth2',
+    # 'social.backends.google.GoogleOAuth2',
+    # 'social.backends.twitter.TwitterOAuth',
     'django.contrib.auth.backends.ModelBackend',
     # 'bossoidc.backend.OpenIdConnectBackend',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
-        'oidc_auth.authentication.BearerTokenAuthentication',
-    ),
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.IsAuthenticated',
+#     ),
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework.authentication.SessionAuthentication',
+#         'oidc_auth.authentication.BearerTokenAuthentication',
+#     ),
+# }
 
-#########################################################
-# Base
-#########################################################
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'jou8pt^m-on)^wtl-l7nuex7gq+bd87tm8(pprb12e^o9jlh^&'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    # 'bossoidc',
-    # 'djangooidc',
-    'core',
-    'poker',
-    'runtastic',
-]
-
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-
-ROOT_URLCONF = 'life.urls'
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                # 'social_django.context_processors.backends',
-                # 'social_django.context_processors.login_redirect',
-            ],
-        },
-    },
-]
-
-WSGI_APPLICATION = 'life.wsgi.application'
-
+LOGIN_REDIRECT_URL = 'home'
 
 #########################################################
 # Database
