@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.urls import path
 
 urlpatterns = [
-    url(r'', include('core.urls')),
-    url(r'^admin/', admin.site.urls),
-    url(r'^runtastic/', include('runtastic.urls')),
-    url(r'^poker/', include('poker.urls')),
-    # url(r'openid/', include('djangooidc.urls')),
+    path('', include('core.urls')),
+    path('admin/', admin.site.urls),
+    path('runtastic/', include('runtastic.urls')),
+    path('poker/', include('poker.urls')),
+    # path('openid/', include('djangooidc.urls')),
 ]

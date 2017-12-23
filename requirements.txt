@@ -5,6 +5,7 @@ dj-database-url==0.4.2
 whitenoise==3.3.1
 raven==6.2.1
 python-social-auth==0.3.6
+django-allauth==0.34.0
 -e git+https://github.com/jhuapl-boss/django-oidc.git#egg=django-oidc
 -e git+https://github.com/jhuapl-boss/drf-oidc-auth.git#egg=drf-oidc-auth
 -e git+https://github.com/jhuapl-boss/boss-oidc.git#egg=boss-oidc

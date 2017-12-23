@@ -40,9 +40,9 @@
                 <ul class="nav navbar-nav navbar-right">
                     {% if user.is_authenticated %}
                         <li><p class="navbar-text">Hello <b>{{ user }}</b></p></li>
-                        <li><p class="navbar-text"><a class="no-underline text-bold text-white" href="/logout">Logout</a></p></li>
+                        <li><p class="navbar-text"><b><a data-toggle="modal" class="no-underline text-bold text-white" href="#" data-target="#logout-modal">Logout</a></b></p></li>
                     {% else %}
-                        <li><p class="navbar-text"><b><a class="no-underline text-bold text-white" href="/login">Sign in</a></b> or <b><a class="no-underline text-bold text-white" href="/login">Sign up</a></b></p></li>
+                        <li><p class="navbar-text"><b><a data-toggle="modal" class="no-underline text-bold text-white" href="#" data-target="#login-modal">Login</a></b> or <b><a data-toggle="modal" class="no-underline text-bold text-white" href="#" data-target="#register-modal">Sign up</a></b></p></li>
                     {% endif %}
                 </ul>
             </div>
@@ -58,5 +58,8 @@
 
         {% endblock %}
 
+        {% include "core/login_popup.html" %}
+        {% include "core/logout_popup.html" %}
+        {% include "core/signup_popup.html" %}
     </body>
 </html>

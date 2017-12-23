@@ -21,9 +21,6 @@ import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'jou8pt^m-on)^wtl-l7nuex7gq+bd87tm8(pprb12e^o9jlh^&'
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -36,9 +33,28 @@ INSTALLED_APPS = [
     'core',
     'poker',
     'runtastic',
+
+    # Rest Framework
+    # 'rest_framework',
+    # 'rest_framework.authtoken',
+    # 'rest_auth',
+    # 'rest_auth.registration',
+
+    # django All Authentication
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+    # 'rest_framework_swagger',
+
+
     # 'bossoidc',
     # 'djangooidc',
 ]
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'jou8pt^m-on)^wtl-l7nuex7gq+bd87tm8(pprb12e^o9jlh^&'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -55,8 +71,7 @@ ROOT_URLCONF = 'life.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -112,11 +127,8 @@ else:
 from django.conf.global_settings import DATABASES
 
 AUTHENTICATION_BACKENDS = [
-    # 'social.backends.facebook.FacebookOAuth2',
-    # 'social.backends.google.GoogleOAuth2',
-    # 'social.backends.twitter.TwitterOAuth',
     'django.contrib.auth.backends.ModelBackend',
-    # 'bossoidc.backend.OpenIdConnectBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 # REST_FRAMEWORK = {
@@ -129,7 +141,14 @@ AUTHENTICATION_BACKENDS = [
 #     ),
 # }
 
-LOGIN_REDIRECT_URL = 'home'
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
+
+LOGIN_REDIRECT_URL = '/'
 
 #########################################################
 # Database

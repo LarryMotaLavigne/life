@@ -17,7 +17,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^session/$', views.session, name='session'),
-    url(r'^result/$', views.result, name='result'),
+    url('', views.index, name='index'),
+    url('session/', views.session, name='session'),
+    url('result/', views.result, name='result'),
 ]
