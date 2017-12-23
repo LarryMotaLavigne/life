@@ -1,69 +1,84 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="icon" type="image/png" href="{% static 'favicon/L_16x16.png' %}">
-        <title>{% block title%}Life{% endblock %}</title>
-        {#             CSS files         #}
-        <link rel="stylesheet" href="{% static 'css/app.css' %}">
-        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}">
-        <link rel="stylesheet" href="{% static 'css/docs.css' %}">
-        <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
-        {#             JS files         #}
-        {% block jquery_version %}
-            <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
-        {% endblock %}
-        <script src="{% static 'js/bootstrap.js' %}"></script>
-        <script src="{% static 'js/docs.js' %}"></script>
-        {% block more_header %}
-        {% endblock %}
-    </head>
-    <style>
-        @font-face {
-            font-family: barbershop;
-            src: url('{% static 'fonts/Barbershop-in-Thailand.ttf' %}') format("truetype");
-        }
-    </style>
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="{% static 'favicon/L_16x16.png' %}">
+    <title>{% block title %}Life{% endblock %}</title>
+    {#             CSS files         #}
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}">
+    <link rel="stylesheet" href="{% static 'css/docs.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+    {#             JS files         #}
+    {% block jquery_version %}
+        <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    {% endblock %}
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/docs.js' %}"></script>
+    {% block more_header %}
+    {% endblock %}
+</head>
+<style>
+    @font-face {
+        font-family: barbershop;
+        src: url('{% static 'fonts/Barbershop-in-Thailand.ttf' %}') format("truetype");
+    }
+</style>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand title" href="/">Life</a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    {% if user.is_authenticated %}
-                        <li><p class="navbar-text">Hello <b>{{ user }}</b></p></li>
-                        <li><p class="navbar-text"><b><a data-toggle="modal" class="no-underline text-bold text-white" href="#" data-target="#logout-modal">Logout</a></b></p></li>
-                    {% else %}
-                        <li><p class="navbar-text"><b><a data-toggle="modal" class="no-underline text-bold text-white" href="#" data-target="#login-modal">Login</a></b> or <b><a data-toggle="modal" class="no-underline text-bold text-white" href="#" data-target="#register-modal">Sign up</a></b></p></li>
-                    {% endif %}
-                </ul>
-            </div>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand title" href="/">Life</a>
         </div>
-    </nav>
 
-    <body>
-        {% block body%}
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hello <b>{{ user }}</b> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                    <li></li>
+                    <li><p class="navbar-text"><b><a data-toggle="modal" class="no-underline text-bold text-white" href="#" data-target="#logout-modal">Logout</a></b></p></li>
+                {% else %}
+                    <li><p class="navbar-text"><b><a data-toggle="modal" class="no-underline text-bold text-white" href="#" data-target="#login-modal">Login</a></b> or <b><a
+                            data-toggle="modal" class="no-underline text-bold text-white" href="#" data-target="#register-modal">Sign up</a></b></p></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
 
-        {% endblock %}
+<body>
+{% block body %}
 
-        {% block more_body %}
+{% endblock %}
 
-        {% endblock %}
+{% block more_body %}
 
-        {% include "core/login_popup.html" %}
-        {% include "core/logout_popup.html" %}
-        {% include "core/signup_popup.html" %}
-    </body>
+{% endblock %}
+
+{% include "core/login_popup.html" %}
+{% include "core/logout_popup.html" %}
+{% include "core/signup_popup.html" %}
+
+<script src="{% static 'js/app.js' %}"></script>
+</body>
 </html>

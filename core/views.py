@@ -40,3 +40,8 @@ def signup_view(request):
 
     context = {}
     return render(request, "core/index.html", context)
+
+
+def profile_view(request):
+    context = {}
+    return render(request, "core/profile.html", context)

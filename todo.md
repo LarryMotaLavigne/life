@@ -5,7 +5,7 @@
 * Test the worker on heroku
 
 ### Development
-* Simple Sign in (with email, password, ...)
-* Social Sign in
+* Simple Sign in (with email, password, ...) - DONE 
+* Social Sign in - DONE
 * Account interface
 * ...
