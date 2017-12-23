@@ -22,6 +22,7 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 INSTALLED_APPS = [
+    # Base
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -29,28 +30,19 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'social.apps.django_app.default',  # Social Authent
+
+    # Application
     'core',
     'poker',
     'runtastic',
 
-    # Rest Framework
-    # 'rest_framework',
-    # 'rest_framework.authtoken',
-    # 'rest_auth',
-    # 'rest_auth.registration',
-
-    # django All Authentication
+    # Django All Authentication
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
-    # 'rest_framework_swagger',
+    'allauth.socialaccount.providers.github',
 
-
-    # 'bossoidc',
-    # 'djangooidc',
 ]
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'jou8pt^m-on)^wtl-l7nuex7gq+bd87tm8(pprb12e^o9jlh^&'
@@ -88,7 +80,7 @@ TEMPLATES = [
     },
 ]
 
-SITE_ID=1
+SITE_ID = 2
 
 WSGI_APPLICATION = 'life.wsgi.application'
 

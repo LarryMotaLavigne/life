@@ -1,8 +1,14 @@
-<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" aria-hidden="true" style="display: none;">
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel"
+     aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="loginmodal-container">
             <h1>Login to Your Account</h1><br>
             {% include 'core/fragments/login_form.html' %}
+            <div class="login-social row" style="text-align: center;">
+                <div class="col-xs-6"><a href="/accounts/google/login" class="btn btn-social-icon btn-google"><span class="fa fa-google"></a></div>
+                <div class="col-xs-6"><a href="/accounts/github/login" class="btn btn-social-icon btn-github"><span class="fa fa-github"></a></div>
+            </div>
+            <br>
             <div class="login-help">
                 <a href="#">Register</a> - <a href="#">Forgot Password</a>
             </div>
