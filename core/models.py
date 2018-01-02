@@ -14,9 +14,9 @@ class Application(models.Model):
     name = models.CharField(max_length=50)
     image = models.ImageField(blank=True)
     date = models.DateField(auto_now=True)
-    user = models.ManyToManyField(User)
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     picture = models.ImageField(upload_to=user_directory_path, blank=True)
+    application = models.ManyToManyField(Application)

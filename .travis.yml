@@ -5,13 +5,14 @@ python:
 
 services:
   - postgresql
-  - docker
 
 addons:
   postgresql: "9.6"
 
 env:
-  - DATABASE_URL=postgres://postgres@localhost/travisdb
+  global:
+    - DATABASE_URL=postgres://postgres@localhost/travisdb
+    - BUILD_ON_TRAVIS=true
 
 before_install:
 #  - docker pull jboss/keycloak
@@ -24,8 +25,7 @@ install:
 before_script:
   - sudo apt-get install libjpeg8-dev
   - psql -c "CREATE DATABASE travisdb;" -U postgres
-  - python3 manage.py migrate --noinput
-  - python3 manage.py collectstatic --noinput
+  - python3 manage.py syncdb --noinput
 
 script:
   - python manage.py test

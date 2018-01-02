@@ -64,7 +64,7 @@ ROOT_URLCONF = 'life.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, '../../templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -92,11 +92,21 @@ WSGI_APPLICATION = 'life.wsgi.application'
 TRAVIS_ENVIRONMENT = False
 HEROKU_ENVIRONMENT = False
 
-if 'TRAVIS' in os.environ:
+if os.getenv('BUILD_ON_TRAVIS', None):
     TRAVIS_ENVIRONMENT = True
     DEBUG = False
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     ALLOWED_HOSTS = ['*']
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'travisdb',
+            'USER': 'postgres',
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+    }
 elif 'HEROKU' in os.environ:
     HEROKU_ENVIRONMENT = True
     DEBUG = False
@@ -148,22 +158,11 @@ LOGIN_REDIRECT_URL = '/'
 #########################################################
 
 # Update database configuration with $DATABASE_URL.
-if TRAVIS_ENVIRONMENT:
-    DATABASES = {
-        'default': {
-            'ENGINE':   'django.db.backends.postgresql_psycopg2',
-            'NAME':     'travisdb',
-            'USER':     'postgres',
-            'PASSWORD': '',
-            'HOST':     'localhost',
-            'PORT':     '',
-        }
-    }
-elif HEROKU_ENVIRONMENT:
+if HEROKU_ENVIRONMENT:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'NAME': os.path.join(BASE_DIR, '../../db.sqlite3'),
         }
     }
     db_from_env = dj_database_url.config(conn_max_age=500)
@@ -172,7 +171,7 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'NAME': os.path.join(BASE_DIR, '../../db.sqlite3'),
         }
     }
 
@@ -221,7 +220,7 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
+    os.path.join(PROJECT_ROOT, '../static'),
 )
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
