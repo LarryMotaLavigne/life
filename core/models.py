@@ -11,12 +11,12 @@ def user_directory_path(instance, filename):
 
 
 class Application(models.Model):
-    name = models.CharField(max_length=50)
-    image = models.ImageField(blank=True)
-    date = models.DateField(auto_now=True)
+    name = models.CharField(max_length=50, null=True)
+    image = models.ImageField(null=True)
+    date = models.DateField(auto_now=True, null=True)
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    picture = models.ImageField(upload_to=user_directory_path, blank=True)
-    application = models.ManyToManyField(Application)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    picture = models.ImageField(upload_to=user_directory_path, null=True)
+    application = models.ManyToManyField(Application, null=True)
