@@ -6,6 +6,7 @@ Django settings for life project.
 import os
 
 from django.conf.global_settings import DATABASES
+from django.core.exceptions import ImproperlyConfigured
 
 #########################################################
 # Base
@@ -18,7 +19,6 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
-
 
 INSTALLED_APPS = [
     # Base

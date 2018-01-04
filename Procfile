@@ -1,2 +1,1 @@
-web: gunicorn life.wsgi --log-file -
-worker: python3 manage.py migrate
+web: python3 manage.py collectstatic; gunicorn life.wsgi
