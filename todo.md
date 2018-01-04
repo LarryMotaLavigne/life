@@ -39,3 +39,5 @@
 #### Front end Framework
 * Choose and select appropriate framework
 
+#### Network Security & Ethical Hacking applications
+

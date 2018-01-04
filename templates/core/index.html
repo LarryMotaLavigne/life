@@ -10,18 +10,11 @@
     {% load staticfiles%}
 <div class="col-12 col-md-9">
     <div class="owl-carousel owl-theme">
-        <div class="item">
-            <a href="/poker"><img height="200" width="200" src="{% static 'images/poker.jpg' %}"></a>
-        </div>
-        <div class="item">
-            <a href="/runtastic"><img height="200" width="200" src="{% static 'images/runtastic.png' %}"></a>
-        </div>
-        <div class="item">
-            <a href="/"><img height="200" width="200" src="{% static 'images/music.jpg' %}"></a>
-        </div>
-        <div class="item">
-            <a href="/"><img height="200" width="200" src="{% static 'images/todolist.jpg' %}"></a>
-        </div>
+        {% for application in application_list %}
+            <div class="item">
+                <a href="/{{ application.name }}"><img height="200" width="200" alt="{{ application.name }}" src="{{ application.image.url }}"></a>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
 

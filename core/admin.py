@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.admin.templatetags.admin_list import _boolean_icon
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
@@ -6,7 +7,6 @@ from django.contrib.sites.models import Site
 from .models import Application, Profile
 
 # Register your models here.
-admin.site.register(Application)
 admin.site.unregister(Site)
 
 
@@ -36,6 +36,17 @@ class CustomUserAdmin(UserAdmin):
         if not obj:
             return list()
         return super(CustomUserAdmin, self).get_inline_instances(request, obj)
+
+
+@admin.register(Application)
+class ApplicationAdmin(admin.ModelAdmin):
+    list_display = ["id", "name", "date", "is_there_any_image"]
+
+    def is_there_any_image(self, obj):
+        if obj.image is None:
+            return _boolean_icon(True)
+        return _boolean_icon(False)
+    is_there_any_image.short_description = "Is there any image attached ?"
 
 
 admin.site.unregister(User)
