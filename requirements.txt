@@ -4,7 +4,6 @@ gunicorn==19.7.1
 dj-database-url==0.4.2
 whitenoise==3.3.1
 raven==6.2.1
-python-social-auth==0.3.6
 django-allauth==0.34.0
 Pillow==3.1.2
 django-debug-toolbar==1.9

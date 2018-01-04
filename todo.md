@@ -6,7 +6,7 @@
 
 ### Development
 #### Core
-* Simple Sign in (with email, password, ...) - DONE 
+* ~~Simple Sign in (with email, password, ...)~~
 * Social Sign in - DONE
 * Account interface
 * Storage location

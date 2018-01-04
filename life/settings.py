@@ -124,7 +124,7 @@ else:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-    INTERNAL_IPS = ['127.0.0.1']
+    INTERNAL_IPS = ['127.0.0.1'] #django-debug-toolbar need
 
 #########################################################
 # Authentication
