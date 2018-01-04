@@ -7,3 +7,4 @@ raven==6.2.1
 python-social-auth==0.3.6
 django-allauth==0.34.0
 Pillow==3.1.2
+django-debug-toolbar==1.9
