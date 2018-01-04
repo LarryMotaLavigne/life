@@ -5,6 +5,7 @@
 This projet has for goal to provide a responsive website for life management.
 It is made with Django 2.0 and severals tools I will describe later...
 
+cf. [todolist](https://github.com/Squalex/life/blob/master/todo.md)
 
 ## Continuous Delivery
 Travis CI, Heroku and Sentry
