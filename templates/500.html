@@ -1,5 +1,21 @@
 {% extends "core/base.html" %}
 
 {% block body %}
-    Oups... Error 500
+    {% load staticfiles %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-2 text-center">
+                <div>Oups... Something went wrong !</div>
+            </div>
+            <div class="col-md-5"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-2 text-center">
+                <a href="/">try again</a>
+            </div>
+            <div class="col-md-5"></div>
+        </div>
+    </div>
 {% endblock %}

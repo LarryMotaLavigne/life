@@ -1,14 +1,19 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
+from django.views.generic import TemplateView, UpdateView
 
-from core.models import Application
+from core.models import Application, Profile
+from core.tools import AjaxableResponseMixin
 
 
-def index(request):
-    application_list = Application.objects.all()
-    context = {"application_list": application_list}
-    return render(request, "core/index.html", context)
+class IndexView(TemplateView):
+    template_name = "core/index.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["application_list"] = Application.objects.all()
+        return context
 
 
 def login_view(request):
@@ -21,13 +26,13 @@ def login_view(request):
             login(request, user)
 
     context = {}
-    return redirect(index)
+    return redirect(IndexView)
 
 
 def logout_view(request):
     logout(request)
     context = {}
-    return redirect(index)
+    return redirect(IndexView)
 
 
 def signup_view(request):
@@ -42,9 +47,18 @@ def signup_view(request):
                 login(request, user)
 
     context = {}
-    return redirect(index)
+    return redirect(IndexView)
 
 
-def profile_view(request):
-    context = {}
-    return render(request, "core/profile.html", context)
+class ProfileView(TemplateView):
+    template_name = "core/profile.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["application_list"] = Application.objects.all()
+        return context
+
+
+class ProfileUpdate(AjaxableResponseMixin, UpdateView):
+    model = Profile
+    fields = ['picture', 'applications']

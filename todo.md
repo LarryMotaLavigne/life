@@ -1,8 +1,10 @@
 # Todo list
 
 ### Production
-* Create super user (to connect to the admin interface)
-* Test the worker on heroku
+* ~~Create super user (to connect to the admin interface)~~
+* ~~Improve compatibility with heroku system~~
+* Add security requirements
+* Enable social authentication
 
 ### Development
 #### Core
@@ -11,12 +13,13 @@
 * Account interface
 * Storage location
 * Static files
-* Application management
 * Improve sign in/sign up login
 * Session management
-* Function-based views to Class-based views
+* ~~Function-based views to Class-based views~~
 * Mutiple settings modules
 * Using Class-based forms for authentication
+* Error pages needed to be created
+* Internationalization
 
 #### Apps
 ##### Health

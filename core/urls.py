@@ -20,13 +20,11 @@ from core import views
 from life import settings
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('login/', views.login_view, name='login'),
-    path('logout/', views.logout_view, name='logout'),
-    path('signup/', views.signup_view, name='signup'),
-    path('signup/', views.signup_view, name='signup'),
-    path('accounts/', include('allauth.urls')),
-    path('profile/', views.profile_view, name='profile'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
+                  path('', views.IndexView.as_view(), name='index'),
+                  path('login/', views.login_view, name='login'),
+                  path('logout/', views.logout_view, name='logout'),
+                  path('signup/', views.signup_view, name='signup'),
+                  path('signup/', views.signup_view, name='signup'),
+                  path('accounts/', include('allauth.urls')),
+                  path('profile/', views.ProfileView.as_view(), name='profile'),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

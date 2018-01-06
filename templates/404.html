@@ -1,5 +1,21 @@
 {% extends "core/base.html" %}
 
 {% block body %}
-    Oups... 404 Not found !
+    {% load staticfiles %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-2 text-center">
+                <div>Oups... 404 Not found !</div>
+            </div>
+            <div class="col-md-5"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-2 text-center">
+                <a href="/">try again</a>
+            </div>
+            <div class="col-md-5"></div>
+        </div>
+    </div>
 {% endblock %}
