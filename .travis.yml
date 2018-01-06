@@ -14,11 +14,6 @@ env:
     - DATABASE_URL=postgres://postgres@localhost/travisdb
     - BUILD_ON_TRAVIS=true
 
-before_install:
-#  - docker pull jboss/keycloak
-#  - docker run --name keycloak -d -p 8080:8080 -e KEYCLOAK_USER=test -e KEYCLOAK_PASSWORD=test jboss/keycloak
-#  - docker ps -a
-
 install:
   - pip3 install -r requirements.txt
 
