@@ -4,7 +4,7 @@
 * ~~Create super user (to connect to the admin interface)~~
 * ~~Improve compatibility with heroku system~~
 * Add security requirements
-* Enable social authentication
+* Enable social authentication (Database)
 
 ### Development
 #### Core
@@ -13,7 +13,7 @@
 * Account interface
 * Storage location
 * Static files
-* Improve sign in/sign up login
+* ~~Improve sign in/sign up login~~
 * Session management
 * ~~Function-based views to Class-based views~~
 * Mutiple settings modules

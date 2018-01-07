@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin.templatetags.admin_list import _boolean_icon
 from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 
@@ -51,3 +52,4 @@ class ApplicationAdmin(admin.ModelAdmin):
 
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
+admin.site.login = login_required(admin.site.login)
