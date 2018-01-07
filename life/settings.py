@@ -11,6 +11,7 @@ from django.core.exceptions import ImproperlyConfigured
 #########################################################
 # Base
 #########################################################
+from django.urls import reverse_lazy
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -144,6 +145,8 @@ REST_FRAMEWORK = {
 }
 
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_EMAIL_REQUIRED = False
 
 #########################################################
 # Database

@@ -20,6 +20,7 @@
 * Using Class-based forms for authentication
 * Error pages needed to be created
 * Internationalization
+* django-paypal
 
 #### Apps
 ##### Health

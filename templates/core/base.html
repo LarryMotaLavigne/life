@@ -52,8 +52,10 @@
                     <li></li>
                     <li><p class="navbar-text"><b><a data-toggle="modal" class="no-underline text-bold text-white" href="#" data-target="#logout-modal"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i></a></b></p></li>
                 {% else %}
-                    <li><p class="navbar-text"><b><a data-toggle="modal" class="no-underline text-bold text-white" href="#" data-target="#login-modal">Login</a></b> or <b><a
+                    {% block login_signup %}
+                        <li><p class="navbar-text"><b><a data-toggle="modal" class="no-underline text-bold text-white" href="#" data-target="#login-modal">Login</a></b> or <b><a
                             data-toggle="modal" class="no-underline text-bold text-white" href="#" data-target="#register-modal">Sign up</a></b></p></li>
+                    {% endblock %}
                 {% endif %}
             </ul>
         </div>
@@ -61,11 +63,11 @@
 </nav>
 
 <body>
-{% block body %}
+{% block content %}
 
 {% endblock %}
 
-{% block more_body %}
+{% block more_content %}
 
 {% endblock %}
 

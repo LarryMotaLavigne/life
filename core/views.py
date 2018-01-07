@@ -1,10 +1,11 @@
+from allauth.account.views import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.views.generic import TemplateView, UpdateView
 
 from core.models import Application, Profile
-from core.tools import AjaxableResponseMixin
+from core.utils import AjaxableResponseMixin
 
 
 class IndexView(TemplateView):
@@ -12,8 +13,13 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['login_form'] = LoginForm()
+        context['signup_form'] = SignupForm()
         context["application_list"] = Application.objects.all()
         return context
+
+
+index = IndexView.as_view()
 
 
 def login_view(request):
@@ -26,13 +32,13 @@ def login_view(request):
             login(request, user)
 
     context = {}
-    return redirect(IndexView)
+    return redirect("index")
 
 
 def logout_view(request):
     logout(request)
     context = {}
-    return redirect(IndexView)
+    return redirect("index")
 
 
 def signup_view(request):
@@ -47,7 +53,7 @@ def signup_view(request):
                 login(request, user)
 
     context = {}
-    return redirect(IndexView)
+    return redirect("index")
 
 
 class ProfileView(TemplateView):
