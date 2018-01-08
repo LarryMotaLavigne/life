@@ -17,8 +17,7 @@
 * Session management
 * ~~Function-based views to Class-based views~~
 * Mutiple settings modules
-* Using Class-based forms for authentication
-* Error pages needed to be created
+* ~~Error pages needed to be created~~
 * Internationalization
 * django-paypal
 

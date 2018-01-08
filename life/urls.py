@@ -21,7 +21,7 @@ from life import settings
 
 urlpatterns = [
     path('', include('core.urls')),
-    path('admin/', admin.site.urls),
+    path('adminterface/', admin.site.urls),
     path('runtastic/', include('runtastic.urls')),
     path('poker/', include('poker.urls')),
     # path('openid/', include('djangooidc.urls')),
