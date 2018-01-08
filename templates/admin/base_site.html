@@ -1,0 +1,17 @@
+{% extends "admin/base_site.html" %}
+
+{% block footer %}
+    <div style="
+        position: fixed;
+        width:100%;
+        bottom:0px;
+        left:0px;
+        line-height: 35px;
+        text-align: center;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: white;
+        background-color: {{ ENVIRONMENT_COLOR }};">
+        {{ ENVIRONMENT_NAME }}
+    </div>
+{% endblock %}
