@@ -16,7 +16,6 @@ env:
 
 install:
   - pip3 install -r requirements.txt
-  - pip3 install codecov
 
 before_script:
   - sudo apt-get install libjpeg8-dev
@@ -25,6 +24,3 @@ before_script:
 
 script:
   - python manage.py test
-
-after_success:
-  - codecov
