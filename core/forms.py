@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 
-from core.models import Profile
+from core.models import Profile, Application
 
 
 class UserForm(forms.ModelForm):
@@ -11,6 +11,8 @@ class UserForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
+    application = forms.ModelMultipleChoiceField(queryset=Application.objects.all(), widget=forms.CheckboxSelectMultiple)
+
     class Meta:
         model = Profile
-        fields = ('application',)
+        fields = ('application','picture')

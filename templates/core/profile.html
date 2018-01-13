@@ -1,65 +1,166 @@
 {% extends "core/base.html" %}
 
 {% block more_header %}
-    {% load staticfiles%}
-{%  endblock %}
+    {% load staticfiles %}
+{% endblock %}
 
 {% block content %}
-    {% load staticfiles%}
+    {% load staticfiles %}
     <div class="container">
 
-      <div class="row row-offcanvas row-offcanvas-right">
+        <div class="row row-offcanvas row-offcanvas-right">
 
-        <div class="col-12 col-md-9">
-          <div class="jumbotron">
-                {{ user }}
-          </div>
-          <div class="row">
-            <form action="" method="post">{% csrf_token %}
-                {{ user_form.as_p }}
-                {{ profile_form.as_p }}
-                <input type="submit" value="Update" />
-            </form>
-            <div class="col-6 col-lg-4">
-              <h2>Picture</h2>
-              <p>LOL</p>
-              <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-lg-4">
-              <h2>Application list</h2>
-              <p>LOL</p>
-              <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-          </div><!--/row-->
-        </div><!--/span-->
+            <div class="col-12 col-md-9">
+                <div class="jumbotron">
+                    {{ user }}'s profile
+                </div>
+                <div class="row">
+                    <form action="" method="post">{% csrf_token %}
+                        {{ user_form.non_field_errors }}
 
-        <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
-          <div class="list-group">
-            <a href="#" class="list-group-item active">Applications</a>
-              {% for application in application_list %}
-                          <a href="{% url application.name %}" class="list-group-item">{{ application.name }}</a>
-              {% endfor %}
-          </div>
-        </div><!--/span-->
-      </div><!--/row-->
+                        {{ user_form.source.errors }}
+                        {{ user_form.source }}
+
+                        {{ profile_form.non_field_errors }}
+
+                        {{ profile_form.source.errors }}
+                        {{ profile_form.source }}
+
+                        {{ user_form.first_name.label_tag }}
+                        {{ user_form.first_name.errors }}
+                        {{ user_form.first_name }}
+
+                        {{ user_form.last_name.label_tag }}
+                        {{ user_form.last_name.errors }}
+                        {{ user_form.last_name }}
+
+                        {{ user_form.email.label_tag }}
+                        {{ user_form.email.errors }}
+                        {{ user_form.email }}
+
+                        {{ profile_form.application.label_tag }}
+                        {{ profile_form.application.errors }}
+                        {{ profile_form.application }}
+
+                        {{ profile_form.picture.label_tag }}
+                        {{ profile_form.picture.errors }}
+                        {{ profile_form.picture }}
+
+                        <input type="submit" value="Update"/>
+                    </form>
+                </div><!--/row-->
+            </div><!--/span-->
+        </div><!--/row-->
+        <div class="row row-offcanvas row-offcanvas-right">
+            {% for application in application_list %}
+                {% for choice in profile_form.application.field.choices %}
+                    {% if choice.1 == application.name %}
+                        <div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
+                            <label class="image-checkbox">
+                                <img height="400" width="600" class="img-responsive" src="{{ application.image.url }}"/>
+                                <input type="checkbox" name="{{ choice.1 }}" value="{{ choice.0 }}"/>
+                                <i class="fa fa-check hidden"></i>
+                            </label>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+
+
+        </div><!--/row-->
+
+
+    Example:
+        <div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
+            <label class="image-checkbox">
+                <img class="img-responsive" src="https://dummyimage.com/600x400/000/fff"/>
+                <input type="checkbox" name="image[]" value=""/>
+                <i class="fa fa-check hidden"></i>
+            </label>
+        </div>
+        <div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
+            <label class="image-checkbox">
+                <img class="img-responsive" src="https://dummyimage.com/600x400/000/fff"/>
+                <input type="checkbox" name="image[]" value=""/>
+                <i class="fa fa-check hidden"></i>
+            </label>
+        </div>
+        <div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
+            <label class="image-checkbox">
+                <img class="img-responsive" src="https://dummyimage.com/600x400/000/fff"/>
+                <input type="checkbox" name="image[]" value=""/>
+                <i class="fa fa-check hidden"></i>
+            </label>
+        </div>
+        <div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
+            <label class="image-checkbox">
+                <img class="img-responsive" src="https://dummyimage.com/600x400/000/fff"/>
+                <input type="checkbox" name="image[]" value=""/>
+                <i class="fa fa-check hidden"></i>
+            </label>
+        </div>
+
+    </div>
+
+
+    <style>
+        .nopad {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        /*image gallery*/
+        .image-checkbox {
+            cursor: pointer;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: 4px solid transparent;
+            margin-bottom: 0;
+            outline: 0;
+        }
+
+        .image-checkbox input[type="checkbox"] {
+            display: none;
+        }
+
+        .image-checkbox-checked {
+            border-color: #4783B0;
+        }
+
+        .image-checkbox .fa {
+            position: absolute;
+            color: #4A79A3;
+            background-color: #fff;
+            padding: 10px;
+            top: 0;
+            right: 0;
+        }
+
+        .image-checkbox-checked .fa {
+            display: block !important;
+        }
+    </style>
+
+    <script>
+        // image gallery
+        // init the state from the input
+        $(".image-checkbox").each(function () {
+            if ($(this).find('input[type="checkbox"]').first().attr("checked")) {
+                $(this).addClass('image-checkbox-checked');
+            }
+            else {
+                $(this).removeClass('image-checkbox-checked');
+            }
+        });
+
+        // sync the state to the input
+        $(".image-checkbox").on("click", function (e) {
+            $(this).toggleClass('image-checkbox-checked');
+            var $checkbox = $(this).find('input[type="checkbox"]');
+            $checkbox.prop("checked", !$checkbox.prop("checked"))
+
+            e.preventDefault();
+        });
+    </script>
 {% endblock %}
