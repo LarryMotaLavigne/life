@@ -57,7 +57,7 @@
           <div class="list-group">
             <a href="#" class="list-group-item active">Applications</a>
               {% for application in application_list %}
-                          <a href="/{{ application.name }}" class="list-group-item">{{ application.name }}</a>
+                          <a href="{% url application.name %}" class="list-group-item">{{ application.name }}</a>
               {% endfor %}
           </div>
         </div><!--/span-->

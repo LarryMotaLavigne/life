@@ -1,5 +1,8 @@
 from django.http import JsonResponse
 
+from core.models import Application
+from life import urls
+
 
 class AjaxableResponseMixin:
     """
@@ -25,3 +28,18 @@ class AjaxableResponseMixin:
             return JsonResponse(data)
         else:
             return response
+
+
+def get_available_applications():
+    """
+    Display every app in the Django project (except the core app, admin and debug_toolbar)
+    :return: A list of every "application" available in the software
+    """
+    app_list = []
+    default_blacklist = ['index', 'render_panel']
+    for urlpatterns in urls.urlpatterns:
+        if hasattr(urlpatterns.urlconf_name, 'urlpatterns'):  # Prevent infinite loop because the origin url is always present
+            app_name = urlpatterns.urlconf_name.urlpatterns[0].name
+            if app_name not in default_blacklist:
+                app_list.append(app_name)
+    return Application.objects.filter(name__in=app_list)

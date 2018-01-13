@@ -1,9 +1,8 @@
 from allauth.account.views import *
-from django.contrib.auth.models import User
 from django.views.generic import TemplateView
 
+from core import utils
 from core.forms import UserForm, ProfileForm
-from core.models import Application
 from core.utils import AjaxableResponseMixin
 
 
@@ -14,7 +13,7 @@ class IndexView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['login_form'] = LoginForm()
         context['signup_form'] = SignupForm()
-        context["application_list"] = Application.objects.all()
+        context["application_list"] = utils.get_available_applications()
         return context
 
 
@@ -32,7 +31,7 @@ class ProfileView(TemplateView, AjaxableResponseMixin):
         context = super().get_context_data(**kwargs)
         context['user_form'] = UserForm(instance=self.request.user)
         context['profile_form'] = ProfileForm(instance=self.request.user.profile)
-        context["application_list"] = Application.objects.all()
+        context["application_list"] = utils.get_available_applications()
         return context
 
 
