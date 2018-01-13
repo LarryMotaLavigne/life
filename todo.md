@@ -4,7 +4,7 @@
 * ~~Create super user (to connect to the admin interface)~~
 * ~~Improve compatibility with heroku system~~
 * Add security requirements
-* Enable social authentication (Database)
+* ~~Enable social authentication (Database)~~
 
 ### Development
 #### Core

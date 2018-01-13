@@ -15,6 +15,11 @@
                 {{ user }}
           </div>
           <div class="row">
+            <form action="" method="post">{% csrf_token %}
+                {{ user_form.as_p }}
+                {{ profile_form.as_p }}
+                <input type="submit" value="Update" />
+            </form>
             <div class="col-6 col-lg-4">
               <h2>Picture</h2>
               <p>LOL</p>

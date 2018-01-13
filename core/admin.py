@@ -39,6 +39,10 @@ class CustomUserAdmin(UserAdmin):
         return super(CustomUserAdmin, self).get_inline_instances(request, obj)
 
 
+admin.site.unregister(User)
+admin.site.register(User, CustomUserAdmin)
+
+
 @admin.register(Application)
 class ApplicationAdmin(admin.ModelAdmin):
     list_display = ["id", "name", "date", "is_there_any_image"]
@@ -50,6 +54,6 @@ class ApplicationAdmin(admin.ModelAdmin):
     is_there_any_image.short_description = "Is there any image attached ?"
 
 
-admin.site.unregister(User)
-admin.site.register(User, CustomUserAdmin)
-admin.site.login = login_required(admin.site.login)
+admin.site.login = login_required(admin.site.login)  # Force login to access administration pages (with AllAuth)
+admin.site.site_header = "Life Administration"
+admin.site.site_title = "Life Administration"
