@@ -25,13 +25,18 @@ class ProfileInline(admin.StackedInline):
 
 class CustomUserAdmin(UserAdmin):
     inlines = (ProfileInline,)
-    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'get_image')
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'get_image', 'get_application_list')
     list_select_related = ('profile',)
 
     def get_image(self, instance):
         return instance.profile.picture
 
     get_image.short_description = 'Picture'
+
+    def get_application_list(self, instance):
+        return instance.profile.application.name
+
+    get_application_list.short_description = 'Applications'
 
     def get_inline_instances(self, request, obj=None):
         if not obj:
