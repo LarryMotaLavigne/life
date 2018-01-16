@@ -5,6 +5,7 @@ from django.views.generic import TemplateView, UpdateView
 
 from core import utils
 from core.forms import UserForm, ProfileForm
+from core.models import Profile
 
 
 class IndexView(TemplateView):
@@ -45,14 +46,16 @@ class ProfileView(UpdateView):
 
     def get(self, request, *args, **kwargs):
         super(ProfileView, self).get(request, *args, **kwargs)
-        user_form = self.form_class
-        profile_form = self.second_form_class
+        user_object = User.objects.get(pk=self.request.session['_auth_user_id'])
+        user_form = self.form_class(initial={'first_name': user_object.first_name, 'last_name': user_object.last_name, 'email': user_object.email})
+        profile_object = Profile.objects.get(user=user_object)
+        profile_form = self.second_form_class(initial={'picture': profile_object.picture, 'application': profile_object.application.all()})
         return self.render_to_response(self.get_context_data(object=self.object, user_form=user_form, profile_form=profile_form))
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         user_form = self.form_class(request.POST, instance=request.user)
-        profile_form = self.second_form_class(request.POST, instance=request.user)
+        profile_form = self.second_form_class(request.POST, request.FILES, instance=request.user.profile)
 
         if user_form.is_valid() and profile_form.is_valid():
             userdata = user_form.save(commit=False)
@@ -61,6 +64,8 @@ class ProfileView(UpdateView):
             profiledata = profile_form.save(commit=False)
             profiledata.user = userdata
             profiledata.save()
+            profile_form.save_m2m()
+
             messages.success(self.request, 'Profile saved successfully')
             return HttpResponseRedirect(self.get_success_url())
         else:

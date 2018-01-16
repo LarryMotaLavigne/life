@@ -11,8 +11,8 @@ class UserForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
-    application = forms.ModelMultipleChoiceField(queryset=Application.objects.all(), widget=forms.CheckboxSelectMultiple)
+    application = forms.ModelMultipleChoiceField(queryset=Application.objects.order_by('name'), to_field_name='id', widget=forms.CheckboxSelectMultiple, required=False)
 
     class Meta:
         model = Profile
-        fields = ('application',)
+        fields = ('application', 'picture')

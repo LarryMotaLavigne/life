@@ -25,7 +25,7 @@ class ProfileInline(admin.StackedInline):
 
 class CustomUserAdmin(UserAdmin):
     inlines = (ProfileInline,)
-    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'get_image', 'get_application_list')
+    list_display = ('id', 'username', 'email', 'first_name', 'last_name', 'is_staff', 'get_image', 'get_application_list')
     list_select_related = ('profile',)
 
     def get_image(self, instance):
@@ -34,7 +34,9 @@ class CustomUserAdmin(UserAdmin):
     get_image.short_description = 'Picture'
 
     def get_application_list(self, instance):
-        return instance.profile.application.name
+        if not instance.profile.application.all():
+            return None
+        return set(application.name for application in instance.profile.application.all())
 
     get_application_list.short_description = 'Applications'
 
@@ -56,6 +58,7 @@ class ApplicationAdmin(admin.ModelAdmin):
         if obj.image is None:
             return _boolean_icon(True)
         return _boolean_icon(False)
+
     is_there_any_image.short_description = "Is there any image attached ?"
 
 
