@@ -3,7 +3,7 @@ psycopg2==2.7.3.2
 gunicorn==19.7.1
 dj-database-url==0.4.2
 whitenoise==3.3.1
-raven==6.5.0
+raven==6.9.0
 django-allauth==0.34.0
 Pillow==5.0.0
 django-debug-toolbar==1.9.1
